@@ -31,7 +31,9 @@ lang.js                       RU/EN switch: ?lang= or # > localStorage > browser
 style.css                     shared styles (palette from the avatar)
 penguin.svg                   the avatar, verbatim (favicon + brand mark)
 penguin-face.svg              the avatar's face: white disc + beak (watermark)
-kpuzzle-logo.svg              KPuzzle glyph, light literals hardcoded
+kpuzzle-icon.svg              the app icon: night launcher colors on a rounded tile
+badge-google-play-en/ru.svg   official Google Play badges
+badge-rustore.svg             official RuStore dark button
 fonts/inter_variable.ttf      Inter variable, same TTF as the app ships
 fonts/OFL.txt                 the font's license
 .well-known/assetlinks.json   Android App Links verification
@@ -55,9 +57,12 @@ fonts/OFL.txt                 the font's license
   paints the gradient under the border-box and bleeds the far gradient end
   through the element's edges. The ghost buttons draw their outline with an
   inset box-shadow instead.
-- `kpuzzle-logo.svg` is the KPuzzle `favicon.svg` with the
-  `prefers-color-scheme: dark` branch stripped so the glyph always stays
-  light and legible on this site's dark background.
+- `kpuzzle-icon.svg` renders the app icon the way the night launcher does:
+  the `ic_launcher_background` dark literal (#263FC0, the dark
+  primaryContainer) behind the foreground glyph in its dark literals.
+- Store badges are the official assets (user-provided Google Play badge
+  SVGs and the RuStore dark button). RuStore is shown only when the page
+  language is Russian.
 - Typography: Inter variable with `tnum, ss01` features and −0.02 em
   tracking on large headings, matching the KPuzzle app.
 
