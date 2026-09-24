@@ -62,16 +62,17 @@
 
 <script type="application/javascript">
     /*
-     * GitHub Pages serves this file for every unmatched path. /KPuzzle/…
-     * must reach the real web app under /KPuzzle-web/…, so normalize the
-     * legacy prefix and preserve the deep path; anything else gets the
-     * styled 404.
+     * GitHub Pages serves this file for every unmatched path. After the
+     * KPuzzle-web → KPuzzle rename the web app lives at /KPuzzle/… (its own
+     * project pages); the legacy /KPuzzle-web/… prefix has no repo of its
+     * own anymore and lands here, so it redirects to the new path.
+     * Anything else gets the styled 404.
      */
     (function () {
         var path = location.pathname;
-        // /KPuzzle/... -> /KPuzzle-web/... (exact prefix, not KPuzzle-web itself)
-        if (path === '/KPuzzle' || path.indexOf('/KPuzzle/') === 0) {
-            var target = '/KPuzzle-web' + path.slice('/KPuzzle'.length) + location.search + location.hash;
+        // /KPuzzle-web/... -> /KPuzzle/... (legacy prefix; the app moved)
+        if (path === '/KPuzzle-web' || path.indexOf('/KPuzzle-web/') === 0) {
+            var target = '/KPuzzle' + path.slice('/KPuzzle-web'.length) + location.search + location.hash;
             location.replace(target);
             return;
         }
