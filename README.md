@@ -51,6 +51,10 @@ fonts/OFL.txt                 the font's license
   crosses it. Do not blend the watermark with `mix-blend-mode`: screen over
   the blue backdrop cannot lower the blue channel, so warm hues turn to
   pastel mud.
+- Gradient buttons carry no border, not even a transparent one: WebKit
+  paints the gradient under the border-box and bleeds the far gradient end
+  through the element's edges. The ghost buttons draw their outline with an
+  inset box-shadow instead.
 - `kpuzzle-logo.svg` is the KPuzzle `favicon.svg` with the
   `prefers-color-scheme: dark` branch stripped so the glyph always stays
   light and legible on this site's dark background.
