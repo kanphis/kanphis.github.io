@@ -11,10 +11,11 @@ The GitHub Pages user site. Three jobs:
 2. **`/projects/`** — project cards; KPuzzle links live here, not on the
    front page.
 3. **Deep-link plumbing** — `.well-known/assetlinks.json` for Android App
-   Links verification, and `404.html` redirecting `/KPuzzle/…` →
-   `/KPuzzle-web/…` (GitHub Pages serves the root `404.html` with a 404
-   status for every unmatched path; browsers render it and the script
-   forwards the deep path).
+   Links verification, and `404.html` redirecting the legacy `/KPuzzle-web/…`
+   prefix to `/KPuzzle/…` (GitHub Pages serves the root `404.html` with a
+   404 status for every unmatched path; browsers render it and the script
+   forwards the deep path). `/KPuzzle/…` itself is served by the KPuzzle
+   repo's own project pages and never reaches this site.
 
 Static files only: no build step, no service worker on purpose (the stub
 must always reflect edits immediately, and caching would complicate
@@ -26,7 +27,7 @@ assetlinks updates).
 .nojekyll                     GitHub Pages must serve dot-directories
 index.html                    landing
 projects/index.html           projects page
-404.html                      /KPuzzle/* redirector + styled 404
+404.html                      /KPuzzle-web/* redirector + styled 404
 lang.js                       RU/EN switch: ?lang= or # > localStorage > browser locale
 style.css                     shared styles (palette from the avatar)
 favicon.svg                   the avatar clipped to a circle (favicon)
@@ -72,8 +73,8 @@ Push to `main`; Pages publishes in ~1 minute. Verify:
 
 ```bash
 curl -fsS https://kanphis.github.io/.well-known/assetlinks.json | python3 -m json.tool
-curl -fsSI https://kanphis.github.io/KPuzzle/sudoku | grep -i http/   # expect 404 status...
-curl -fsS https://kanphis.github.io/KPuzzle/sudoku | head -3          # ...but redirector markup
+curl -fsSI https://kanphis.github.io/KPuzzle-web/sudoku | grep -i http/   # expect 404 status...
+curl -fsS https://kanphis.github.io/KPuzzle-web/sudoku | head -3          # ...but redirector markup
 ```
 
 If the JSON 404s: check that `.nojekyll` was pushed and the path case is
