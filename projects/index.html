@@ -70,10 +70,15 @@
             font-size: 0.95rem;
         }
         .soon span { display: block; }
+        /* Narrow screens: reserve a strip below the content so the anchored
+           disc never sits under the footer text */
+        @media (max-width: 700px) {
+            body { padding-bottom: 56vmin; }
+        }
     </style>
 </head>
 <body>
-<div class="watermark raised"><img src="/penguin-ghost.svg" alt=""></div>
+<div class="watermark scrolls"><img src="/penguin-face.svg" alt=""></div>
 <div class="page">
     <div class="lang-bar">
         <div class="lang-switch" role="group" aria-label="Language">
@@ -101,12 +106,14 @@
                 </div>
             </div>
             <p class="desc">
-                <span lang="en" class="t-en">Sixteen logic puzzles — sudoku and nonograms up to star
-                battle — with a generator, a solver and progressive hints. Fully
-                offline: every puzzle is generated and solved on your device.</span>
-                <span lang="ru" class="t-ru">Шестнадцать логических головоломок — от судоку и нонограмм
+                <span lang="en" class="t-en">Logic puzzles — sudoku and nonograms up to star
+                battle — with a generator, a solver and progressive hints.
+                Fully offline: every puzzle is generated and solved on your
+                device.</span>
+                <span lang="ru" class="t-ru">Логические головоломки — от судоку и нонограмм
                 до звёздных битв: генератор, решатель и постепенные подсказки.
-                Полностью оффлайн — пазлы собираются и решаются на устройстве.</span>
+                Полностью оффлайн — пазлы собираются и решаются на
+                устройстве.</span>
             </p>
             <div class="actions">
                 <a class="button primary" href="https://kanphis.github.io/KPuzzle-web/">

@@ -3,8 +3,8 @@
  *
  * The whole palette is lifted from the owner's penguin avatar (penguin.svg):
  * body gradient #000084 → #000064, beak gradient #FFD100 → #FF5E4A, white
- * belly. The avatar itself returns as a giant translucent watermark
- * (penguin-ghost.svg); the beak gradient is the only accent the UI uses.
+ * belly. The avatar's face — the white disc with the beak — returns as the
+ * watermark (penguin-face.svg); the beak gradient is the only accent the UI uses.
  *
  * Language switching mirrors webApp privacy.html: the script sets
  * html[data-lang] and these rules collapse the page to one language —
@@ -31,7 +31,9 @@
     --surface: rgba(255, 255, 255, 0.055);
     --sun: #FFD100;
     --coral: #FF5E4A;
-    --accent: linear-gradient(105deg, var(--sun), var(--coral));
+    /* 90deg on purpose: a tilted gradient renders thin lines of the far
+       color at the button's side edges */
+    --accent: linear-gradient(90deg, var(--sun), var(--coral));
     --on-accent: #00054E;
 }
 
@@ -45,6 +47,7 @@ html[data-lang] .sep { display: none; }
 
 body {
     margin: 0;
+    position: relative; /* anchor for the document-spanning watermark on scrollable pages */
     min-height: 100svh;
     background:
         radial-gradient(110% 70% at 50% 0%, rgba(255, 255, 255, 0.07), transparent 60%),
@@ -70,30 +73,22 @@ a { color: var(--text); }
     inset: 0;
     z-index: -1;
     display: grid;
-    place-items: center;
+    place-content: end;
     overflow: hidden;
     pointer-events: none;
 }
 
 .watermark img {
-    width: 118vmin;
-    height: 118vmin;
-    translate: 5vmin -6vmin;
+    width: 58vmin;
+    height: 58vmin;
+    /* push the disc partly off the bottom-right corner */
+    translate: 9vmin 13vmin;
     animation: drift 16s ease-in-out infinite alternate;
 }
 
-/* On content pages the sign rides toward the upper right so the beak
-   clears the left-aligned text; `translate` composes with the drift
-   animation's transform */
-.watermark.raised img { translate: 16vmin -14vmin; }
-
-/* Narrow screens: content fills the viewport, so soften the mark and keep
-   it above the fold; content pages dim it further — the beak crosses the
-   card text there */
-@media (max-width: 700px) {
-    .watermark img { opacity: 0.85; translate: 0 -5vmin; }
-    .watermark.raised img { opacity: 0.7; translate: 0 -14vmin; }
-}
+/* Scrollable pages anchor the mark to the document instead of the viewport,
+   so text never scrolls across the white disc */
+.watermark.scrolls { position: absolute; }
 
 @keyframes drift {
     from { transform: translateY(-1.4%) rotate(-1deg); }
@@ -125,6 +120,12 @@ a { color: var(--text); }
     top: 1.4rem;
     right: 1.5rem;
     z-index: 10;
+    /* keep the switch legible when page text scrolls beneath it */
+    padding: 0.35rem;
+    border-radius: 12px;
+    background: rgba(0, 6, 78, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .lang-switch {
@@ -178,12 +179,14 @@ a { color: var(--text); }
 .button.primary {
     background: var(--accent);
     color: var(--on-accent);
-    box-shadow: 0 8px 24px rgba(255, 94, 74, 0.22);
+    /* neutral shadow: a coral glow reads as a wrong-color line along the
+       button's yellow side */
+    box-shadow: 0 10px 28px rgba(0, 0, 40, 0.45);
 }
 
 .button.primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 12px 30px rgba(255, 94, 74, 0.32);
+    box-shadow: 0 14px 34px rgba(0, 0, 40, 0.55);
 }
 
 .button.ghost {

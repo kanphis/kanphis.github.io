@@ -2,12 +2,12 @@
 
 The GitHub Pages user site. Three jobs:
 
-1. **Personal landing** (`index.html`) — the owner's penguin avatar as a
-   giant translucent watermark, beak-gradient accents. No top bar: just the
-   wordmark, the tagline, a link to `/projects/` and a floating RU + EN
-   switch. The choice is kept in `localStorage`, so it survives navigation
-   between the pages (`?lang=` / `#lang` still override it; without
-   JavaScript both languages stay visible).
+1. **Personal landing** (`index.html`) — the penguin's face as a big white
+   disc anchored to the bottom-right corner, beak-gradient accents. No top
+   bar: just the wordmark, the tagline, a link to `/projects/` and a
+   floating RU + EN switch. The choice is kept in `localStorage`, so it
+   survives navigation between the pages (`?lang=` / `#lang` still override
+   it; without JavaScript both languages stay visible).
 2. **`/projects/`** — project cards; KPuzzle links live here, not on the
    front page.
 3. **Deep-link plumbing** — `.well-known/assetlinks.json` for Android App
@@ -30,7 +30,7 @@ projects/index.html           projects page
 lang.js                       RU/EN switch: ?lang= or # > localStorage > browser locale
 style.css                     shared styles (palette from the avatar)
 penguin.svg                   the avatar, verbatim (favicon + brand mark)
-penguin-ghost.svg             watermark variant of the same geometry
+penguin-face.svg              the avatar's face: white disc + beak (watermark)
 kpuzzle-logo.svg              KPuzzle glyph, light literals hardcoded
 fonts/inter_variable.ttf      Inter variable, same TTF as the app ships
 fonts/OFL.txt                 the font's license
@@ -43,12 +43,14 @@ fonts/OFL.txt                 the font's license
   `#FFD100 → #FF5E4A` — the only accent, used for the primary buttons,
   the 404 numerals, selection and focus rings. Everything else is white
   at varying opacity.
-- `penguin-ghost.svg` is `penguin.svg` redrawn as the face only — the circle
-  and the beak; the avatar's squares are left out so the watermark never
-  reads as an inscribed square. The beak keeps a strong gradient
-  (`fill-opacity` 0.8). Do not blend the watermark with `mix-blend-mode`:
-  screen over the blue backdrop cannot lower the blue channel, so warm hues
-  turn to pastel mud.
+- `penguin-face.svg` is `penguin.svg` reduced to the face: the white disc —
+  the avatar's belly showing through the body's circular cut-out — with the
+  beak on top. The avatar's squares are left out so the mark never reads as
+  an inscribed square, while the belly keeps its white. On scrollable pages
+  the mark anchors to the document (`.watermark.scrolls`), so text never
+  crosses it. Do not blend the watermark with `mix-blend-mode`: screen over
+  the blue backdrop cannot lower the blue channel, so warm hues turn to
+  pastel mud.
 - `kpuzzle-logo.svg` is the KPuzzle `favicon.svg` with the
   `prefers-color-scheme: dark` branch stripped so the glyph always stays
   light and legible on this site's dark background.

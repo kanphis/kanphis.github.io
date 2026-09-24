@@ -1,15 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6.7047946 6.7047946">
-    <!-- Ghost variant of penguin.svg (the owner's avatar): the face only —
-         the circle and the beak. The squares of the original stay out so the
-         watermark never reads as an inscribed square. The beak keeps its
-         gradient at high opacity — the one saturated element on the page. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.9777826 0.9777826 4.7492294 4.7492294">
+    <!-- The face of penguin.svg (the owner's avatar): the white disc — the
+         avatar's belly showing through the body's circular cut-out — with
+         the beak on top, its geometry and gradient verbatim. The squares of
+         the original stay out so the mark never reads as an inscribed
+         square, while the belly keeps its white. -->
     <defs>
         <linearGradient id="beak" x1="0.77556467" y1="3.9660077" x2="1.7576287" y2="2.9839437" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#FFD100"/>
             <stop offset="1" stop-color="#FF5E4A"/>
         </linearGradient>
     </defs>
-    <circle cx="3.3523973" cy="3.3523973" r="2.3746147" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="0.035"/>
+    <circle cx="3.3523973" cy="3.3523973" r="2.3746147" fill="#FFFFFF"/>
     <path d="M 1.4827218 3.2598273 C 1.2778846 3.0551017 1.0318052 2.8943708 0.76200247 2.7891219 A 0.13969719 0.13969719 0 0 0 0.57256287 2.9199163 L 0.57217704 4.0291604 A 0.13969719 0.13969719 0 0 0 0.71068787 4.1699862 L 1.8222469 4.1696003 A 0.13969719 0.13969719 0 0 0 1.9511121 3.9782316 C 1.8458631 3.7084289 1.6874474 3.4646645 1.4827218 3.2598273 z"
-          transform="rotate(-45)" fill="url(#beak)" fill-opacity="0.8"/>
+          transform="rotate(-45)" fill="url(#beak)"/>
 </svg>
