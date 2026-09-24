@@ -76,20 +76,23 @@ a { color: var(--text); }
 }
 
 .watermark img {
-    width: 96vmin;
-    height: 96vmin;
+    width: 118vmin;
+    height: 118vmin;
+    translate: 5vmin -6vmin;
     animation: drift 16s ease-in-out infinite alternate;
 }
 
-/* On content pages the sign rides higher so the beak clears the text;
-   `translate` composes with the drift animation's transform */
-.watermark.raised img { translate: 0 -13vh; }
+/* On content pages the sign rides toward the upper right so the beak
+   clears the left-aligned text; `translate` composes with the drift
+   animation's transform */
+.watermark.raised img { translate: 16vmin -14vmin; }
 
-/* Narrow screens: content fills the viewport, so soften the mark and nudge
-   it clear of the card headings */
+/* Narrow screens: content fills the viewport, so soften the mark and keep
+   it above the fold; content pages dim it further — the beak crosses the
+   card text there */
 @media (max-width: 700px) {
-    .watermark img { opacity: 0.8; }
-    .watermark.raised img { translate: 0 -20vh; }
+    .watermark img { opacity: 0.85; translate: 0 -5vmin; }
+    .watermark.raised img { opacity: 0.7; translate: 0 -14vmin; }
 }
 
 @keyframes drift {
@@ -101,7 +104,7 @@ a { color: var(--text); }
     .watermark img { animation: none; }
 }
 
-/* --- frame, header --------------------------------------------------- */
+/* --- frame, floating language switch --------------------------------------------------- */
 
 .page {
     min-height: 100svh;
@@ -117,35 +120,12 @@ a { color: var(--text); }
     padding-right: 1.5rem;
 }
 
-.top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-top: 1.5rem;
+.lang-bar {
+    position: fixed;
+    top: 1.4rem;
+    right: 1.5rem;
+    z-index: 10;
 }
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: var(--text);
-    font-weight: 650;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-}
-
-.brand img { width: 28px; height: 28px; border-radius: 20%; display: block; }
-
-.top nav { display: flex; align-items: center; gap: 1.1rem; }
-
-.top nav > a:not(.lang-switch *) {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-
-.top nav > a:not(.lang-switch *):hover { color: var(--text); }
 
 .lang-switch {
     display: inline-flex;

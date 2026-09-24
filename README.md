@@ -3,10 +3,11 @@
 The GitHub Pages user site. Three jobs:
 
 1. **Personal landing** (`index.html`) — the owner's penguin avatar as a
-   giant translucent watermark, beak-gradient accents. RU + EN with a
-   client-side language switch (same mechanics as the KPuzzle web app's
-   `privacy.html`: `?lang=` / `#lang` override the browser locale, no
-   storage, both languages visible without JavaScript).
+   giant translucent watermark, beak-gradient accents. No top bar: just the
+   wordmark, the tagline, a link to `/projects/` and a floating RU + EN
+   switch. The choice is kept in `localStorage`, so it survives navigation
+   between the pages (`?lang=` / `#lang` still override it; without
+   JavaScript both languages stay visible).
 2. **`/projects/`** — project cards; KPuzzle links live here, not on the
    front page.
 3. **Deep-link plumbing** — `.well-known/assetlinks.json` for Android App
@@ -26,6 +27,7 @@ assetlinks updates).
 index.html                    landing
 projects/index.html           projects page
 404.html                      /KPuzzle/* redirector + styled 404
+lang.js                       RU/EN switch: ?lang= or # > localStorage > browser locale
 style.css                     shared styles (palette from the avatar)
 penguin.svg                   the avatar, verbatim (favicon + brand mark)
 penguin-ghost.svg             watermark variant of the same geometry
@@ -41,8 +43,12 @@ fonts/OFL.txt                 the font's license
   `#FFD100 → #FF5E4A` — the only accent, used for the primary buttons,
   the 404 numerals, selection and focus rings. Everything else is white
   at varying opacity.
-- `penguin-ghost.svg` is `penguin.svg` redrawn as translucent line art
-  (same paths); the beak keeps full-strength gradient.
+- `penguin-ghost.svg` is `penguin.svg` redrawn as the face only — the circle
+  and the beak; the avatar's squares are left out so the watermark never
+  reads as an inscribed square. The beak keeps a strong gradient
+  (`fill-opacity` 0.8). Do not blend the watermark with `mix-blend-mode`:
+  screen over the blue backdrop cannot lower the blue channel, so warm hues
+  turn to pastel mud.
 - `kpuzzle-logo.svg` is the KPuzzle `favicon.svg` with the
   `prefers-color-scheme: dark` branch stripped so the glyph always stays
   light and legible on this site's dark background.

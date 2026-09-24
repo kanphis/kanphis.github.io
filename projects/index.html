@@ -75,15 +75,12 @@
 <body>
 <div class="watermark raised"><img src="/penguin-ghost.svg" alt=""></div>
 <div class="page">
-    <header class="top frame">
-        <a class="brand" href="/"><img src="/penguin.svg" alt=""><span>kanphis</span></a>
-        <nav>
-            <div class="lang-switch" role="group" aria-label="Language">
-                <button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
-                <button type="button" data-lang="ru" aria-pressed="false" aria-label="Русский">RU</button>
-            </div>
-        </nav>
-    </header>
+    <div class="lang-bar">
+        <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+            <button type="button" data-lang="ru" aria-pressed="false" aria-label="Русский">RU</button>
+        </div>
+    </div>
     <main class="frame">
         <h1>
             <span lang="en" class="t-en">Projects<span class="sep" aria-hidden="true"> · </span></span>
@@ -132,56 +129,6 @@
         <p class="foot">© 2026 kanphis · <a href="/">← <span lang="en" class="t-en">Home</span><span lang="ru" class="t-ru">Главная</span></a></p>
     </main>
 </div>
-<script type="application/javascript">
-    /*
-     * Same locale mechanics as webApp privacy.html: ?lang= or the hash win
-     * over the browser locale; the choice is client-side only — no storage,
-     * no redirects — and without JavaScript both languages remain visible.
-     */
-    (() => {
-        const root = document.documentElement;
-        const buttons = document.querySelectorAll(".lang-switch button");
-        const titles = {
-            en: "Projects — kanphis",
-            ru: "Проекты — kanphis",
-        };
-
-        const apply = (lang) => {
-            root.setAttribute("data-lang", lang);
-            root.lang = lang;
-            document.title = titles[lang];
-            buttons.forEach((button) => {
-                button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
-            });
-        };
-
-        const fromUrl = () => {
-            const query = new URLSearchParams(window.location.search).get("lang");
-            const hash = window.location.hash.replace("#", "");
-            if (query === "en" || query === "ru") return query;
-            if (hash === "en" || hash === "ru") return hash;
-            return null;
-        };
-
-        const requested = fromUrl();
-        if (requested) {
-            apply(requested);
-        } else {
-            const preferred = navigator.languages || [navigator.language || "en"];
-            apply(preferred.some((tag) => tag.toLowerCase().startsWith("ru")) ? "ru" : "en");
-        }
-
-        buttons.forEach((button) => {
-            button.addEventListener("click", () => {
-                apply(button.dataset.lang);
-                try {
-                    history.replaceState(null, "", "#" + button.dataset.lang);
-                } catch {
-                    // sandboxed contexts may forbid URL changes
-                }
-            });
-        });
-    })();
-</script>
+<script src="/lang.js" data-titles='{"en":"Projects — kanphis","ru":"Проекты — kanphis"}'></script>
 </body>
 </html>

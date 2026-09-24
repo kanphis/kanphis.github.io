@@ -79,28 +79,6 @@
         document.getElementById('not-found').hidden = false;
     })();
 </script>
-<script type="application/javascript">
-    /*
-     * Same locale mechanics as webApp privacy.html; there is no switcher on
-     * this page — it only picks the language of the rare human-facing text.
-     */
-    (() => {
-        const root = document.documentElement;
-        const apply = (lang) => {
-            root.setAttribute("data-lang", lang);
-            root.lang = lang;
-        };
-        const query = new URLSearchParams(window.location.search).get("lang");
-        const hash = window.location.hash.replace("#", "");
-        if (query === "en" || query === "ru") {
-            apply(query);
-        } else if (hash === "en" || hash === "ru") {
-            apply(hash);
-        } else {
-            const preferred = navigator.languages || [navigator.language || "en"];
-            apply(preferred.some((tag) => tag.toLowerCase().startsWith("ru")) ? "ru" : "en");
-        }
-    })();
-</script>
+<script src="/lang.js" data-titles='{"en":"404 — kanphis","ru":"404 — kanphis"}'></script>
 </body>
 </html>
