@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6.7047946 6.7047946">
+    <!-- The avatar (the full-bleed penguin square) clipped to a circle for
+         the favicon: the navy body reads as a ring around the white face and
+         the beak. The body gradient and the beak gradient are the avatar's
+         own literals; the square's corners stay out of the crop. -->
+    <defs>
+        <clipPath id="crop">
+            <circle cx="3.3523973" cy="3.3523973" r="3.3523973"/>
+        </clipPath>
+        <linearGradient id="beak" x1="0.77556467" y1="3.9660077" x2="1.7576287" y2="2.9839437" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#FFD100"/>
+            <stop offset="1" stop-color="#FF5E4A"/>
+        </linearGradient>
+        <linearGradient id="body" x1="3.3523972" y1="0" x2="3.3523972" y2="6.7047944" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#000084"/>
+            <stop offset="1" stop-color="#000064"/>
+        </linearGradient>
+    </defs>
+    <g clip-path="url(#crop)">
+        <rect width="5.0285959" height="5.0285959" x="0.8380993" y="0.8380993" fill="#FFFFFF"/>
+        <path d="M 1.4827218 3.2598273 C 1.2778846 3.0551017 1.0318052 2.8943708 0.76200247 2.7891219 A 0.13969719 0.13969719 0 0 0 0.57256287 2.9199163 L 0.57217704 4.0291604 A 0.13969719 0.13969719 0 0 0 0.71068787 4.1699862 L 1.8222469 4.1696003 A 0.13969719 0.13969719 0 0 0 1.9511121 3.9782316 C 1.8458631 3.7084289 1.6874474 3.4646645 1.4827218 3.2598273 z"
+              transform="rotate(-45)" fill="url(#beak)"/>
+        <path d="M 0 0 L 0 6.7047946 L 6.7047946 6.7047946 L 6.7047946 0 L 0 0 z M 3.3523973 0.97778255 A 2.3746147 2.3746147 0 0 1 5.7270121 3.3523973 A 2.3746147 2.3746147 0 0 1 3.3523973 5.7270121 A 2.3746147 2.3746147 0 0 1 0.97778255 3.3523973 A 2.3746147 2.3746147 0 0 1 3.3523973 0.97778255 z"
+              fill="url(#body)" fill-rule="nonzero"/>
+    </g>
+</svg>

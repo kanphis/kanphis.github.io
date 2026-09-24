@@ -29,7 +29,7 @@ projects/index.html           projects page
 404.html                      /KPuzzle/* redirector + styled 404
 lang.js                       RU/EN switch: ?lang= or # > localStorage > browser locale
 style.css                     shared styles (palette from the avatar)
-penguin.svg                   the avatar, verbatim (favicon + brand mark)
+favicon.svg                   the avatar clipped to a circle (favicon)
 penguin-face.svg              the avatar's face: white disc + beak (watermark)
 kpuzzle-icon.svg              the app icon: light launcher colors on a rounded tile
 badge-google-play-en/ru.svg   official Google Play badges
@@ -45,7 +45,7 @@ fonts/OFL.txt                 the font's license
   `#FFD100 → #FF5E4A` — the only accent, used for the primary buttons,
   the 404 numerals, selection and focus rings. Everything else is white
   at varying opacity.
-- `penguin-face.svg` is `penguin.svg` reduced to the face: the white disc —
+- `penguin-face.svg` is the avatar reduced to the face: the white disc —
   the avatar's belly showing through the body's circular cut-out — with the
   beak on top. The avatar's squares are left out so the mark never reads as
   an inscribed square, while the belly keeps its white. On scrollable pages
