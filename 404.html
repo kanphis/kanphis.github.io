@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kanphis</title>
+    <link rel="icon" type="image/svg+xml" href="/penguin.svg">
+    <meta name="theme-color" content="#000064">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .nf {
+            min-height: 100svh;
+            display: grid;
+            place-content: center;
+            justify-items: center;
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+        /* .nf is revealed by the redirect script; the class would otherwise
+           override the UA's [hidden] rule */
+        .nf[hidden] { display: none; }
+        .code {
+            margin: 0;
+            font-size: 5.5rem;
+            font-weight: 750;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            background: var(--accent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        h1 {
+            margin: 1rem 0 0;
+            font-size: 1.45rem;
+            font-weight: 660;
+            letter-spacing: -0.01em;
+        }
+        .hint { color: var(--muted); margin: 0.7rem 0 1.9rem; }
+        .hint span { display: block; }
+    </style>
+    <noscript><style>.nf[hidden] { display: grid; }</style></noscript>
+</head>
+<body>
+<div class="watermark"><img src="/penguin-ghost.svg" alt=""></div>
+
+<div class="nf" id="not-found" hidden>
+    <p class="code" aria-hidden="true">404</p>
+    <h1>
+        <span lang="en" class="t-en">Page not found<span class="sep" aria-hidden="true"> · </span></span>
+        <span lang="ru" class="t-ru">Страница не найдена</span>
+    </h1>
+    <p class="hint">
+        <span lang="en" class="t-en">The address leads nowhere — the link may be outdated.</span>
+        <span lang="ru" class="t-ru">Адрес никуда не ведёт — возможно, ссылка устарела.</span>
+    </p>
+    <a class="button ghost" href="/">
+        <span lang="en" class="t-en">← Home</span>
+        <span lang="ru" class="t-ru">← На главную</span>
+    </a>
+</div>
+
+<script type="application/javascript">
+    /*
+     * GitHub Pages serves this file for every unmatched path. /KPuzzle/…
+     * must reach the real web app under /KPuzzle-web/…, so normalize the
+     * legacy prefix and preserve the deep path; anything else gets the
+     * styled 404.
+     */
+    (function () {
+        var path = location.pathname;
+        // /KPuzzle/... -> /KPuzzle-web/... (exact prefix, not KPuzzle-web itself)
+        if (path === '/KPuzzle' || path.indexOf('/KPuzzle/') === 0) {
+            var target = '/KPuzzle-web' + path.slice('/KPuzzle'.length) + location.search + location.hash;
+            location.replace(target);
+            return;
+        }
+        document.title = '404 — kanphis';
+        document.getElementById('not-found').hidden = false;
+    })();
+</script>
+<script type="application/javascript">
+    /*
+     * Same locale mechanics as webApp privacy.html; there is no switcher on
+     * this page — it only picks the language of the rare human-facing text.
+     */
+    (() => {
+        const root = document.documentElement;
+        const apply = (lang) => {
+            root.setAttribute("data-lang", lang);
+            root.lang = lang;
+        };
+        const query = new URLSearchParams(window.location.search).get("lang");
+        const hash = window.location.hash.replace("#", "");
+        if (query === "en" || query === "ru") {
+            apply(query);
+        } else if (hash === "en" || hash === "ru") {
+            apply(hash);
+        } else {
+            const preferred = navigator.languages || [navigator.language || "en"];
+            apply(preferred.some((tag) => tag.toLowerCase().startsWith("ru")) ? "ru" : "en");
+        }
+    })();
+</script>
+</body>
+</html>

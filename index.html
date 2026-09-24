@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kanphis</title>
+    <meta name="description" content="Fedor's corner of the web: logic puzzles and small, precise apps.">
+    <link rel="icon" type="image/svg+xml" href="/penguin.svg">
+    <meta name="theme-color" content="#000064">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-top: 4rem;
+            padding-bottom: 13vh;
+        }
+        .avatar {
+            width: 76px;
+            height: 76px;
+            border-radius: 20%;
+            box-shadow: 0 0 0 1px var(--line), 0 14px 36px rgba(0, 0, 0, 0.35);
+        }
+        h1 {
+            margin: 1.4rem 0 0;
+            font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+            font-weight: 680;
+            letter-spacing: -0.02em;
+            line-height: 1.08;
+        }
+        .tagline {
+            margin: 1rem 0 0;
+            max-width: 33rem;
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+        .tagline span { display: block; }
+        .hero .actions { margin-top: 2.2rem; }
+        .hero .foot { margin-top: 9vh; }
+    </style>
+</head>
+<body>
+<div class="watermark"><img src="/penguin-ghost.svg" alt=""></div>
+<div class="page">
+    <header class="top frame">
+        <a class="brand" href="/"><img src="/penguin.svg" alt=""><span>kanphis</span></a>
+        <nav>
+            <a href="/projects/">
+                <span lang="en" class="t-en">Projects<span class="sep" aria-hidden="true"> · </span></span>
+                <span lang="ru" class="t-ru">Проекты</span>
+            </a>
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+                <button type="button" data-lang="ru" aria-pressed="false" aria-label="Русский">RU</button>
+            </div>
+        </nav>
+    </header>
+    <main class="hero frame">
+        <img class="avatar" src="/penguin.svg" alt="">
+        <h1>
+            <span lang="en" class="t-en">Hi, I'm Fedor.<span class="sep" aria-hidden="true"> · </span></span>
+            <span lang="ru" class="t-ru">Привет, я Фёдор.</span>
+        </h1>
+        <p class="tagline">
+            <span lang="en" class="t-en">I make puzzles that are a pleasure to think about.</span>
+            <span lang="ru" class="t-ru">Делаю головоломки, в которых приятно думать.</span>
+        </p>
+        <div class="actions">
+            <a class="button primary" href="/projects/">
+                <span lang="en" class="t-en">Projects</span>
+                <span lang="ru" class="t-ru">Проекты</span>
+                <span aria-hidden="true">→</span>
+            </a>
+            <a class="button ghost" href="https://github.com/kanphis">GitHub</a>
+        </div>
+        <p class="foot">© 2026 kanphis</p>
+    </main>
+</div>
+<script type="application/javascript">
+    /*
+     * Same locale mechanics as webApp privacy.html: ?lang= or the hash win
+     * over the browser locale; the choice is client-side only — no storage,
+     * no redirects — and without JavaScript both languages remain visible.
+     */
+    (() => {
+        const root = document.documentElement;
+        const buttons = document.querySelectorAll(".lang-switch button");
+        const titles = {
+            en: "kanphis",
+            ru: "kanphis",
+        };
+
+        const apply = (lang) => {
+            root.setAttribute("data-lang", lang);
+            root.lang = lang;
+            document.title = titles[lang];
+            buttons.forEach((button) => {
+                button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+            });
+        };
+
+        const fromUrl = () => {
+            const query = new URLSearchParams(window.location.search).get("lang");
+            const hash = window.location.hash.replace("#", "");
+            if (query === "en" || query === "ru") return query;
+            if (hash === "en" || hash === "ru") return hash;
+            return null;
+        };
+
+        const requested = fromUrl();
+        if (requested) {
+            apply(requested);
+        } else {
+            const preferred = navigator.languages || [navigator.language || "en"];
+            apply(preferred.some((tag) => tag.toLowerCase().startsWith("ru")) ? "ru" : "en");
+        }
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                apply(button.dataset.lang);
+                try {
+                    history.replaceState(null, "", "#" + button.dataset.lang);
+                } catch {
+                    // sandboxed contexts may forbid URL changes
+                }
+            });
+        });
+    })();
+</script>
+</body>
+</html>

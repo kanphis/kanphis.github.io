@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — kanphis</title>
+    <meta name="description" content="Projects by kanphis: KPuzzle and friends.">
+    <link rel="icon" type="image/svg+xml" href="/penguin.svg">
+    <meta name="theme-color" content="#000064">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        main {
+            flex: 1;
+            padding-top: 3.25rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(1.9rem, 4vw, 2.6rem);
+            font-weight: 680;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 1.6rem 1.75rem;
+            margin-top: 1.5rem;
+        }
+        .kp-head {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+        }
+        .kp-logo { width: 58px; height: 58px; display: block; }
+        h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 660;
+            letter-spacing: -0.01em;
+        }
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.4rem;
+        }
+        .pill {
+            font-size: 0.7rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0.12rem 0.55rem;
+        }
+        .desc {
+            color: var(--muted);
+            max-width: 36rem;
+            margin: 1.1rem 0 1.4rem;
+        }
+        .desc span { display: block; }
+        .card .actions { align-items: center; }
+        .card .quiet { margin-left: 0.3rem; }
+        .soon {
+            border-style: dashed;
+            color: var(--faint);
+            text-align: center;
+            padding: 1.35rem;
+            font-size: 0.95rem;
+        }
+        .soon span { display: block; }
+    </style>
+</head>
+<body>
+<div class="watermark raised"><img src="/penguin-ghost.svg" alt=""></div>
+<div class="page">
+    <header class="top frame">
+        <a class="brand" href="/"><img src="/penguin.svg" alt=""><span>kanphis</span></a>
+        <nav>
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button type="button" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
+                <button type="button" data-lang="ru" aria-pressed="false" aria-label="Русский">RU</button>
+            </div>
+        </nav>
+    </header>
+    <main class="frame">
+        <h1>
+            <span lang="en" class="t-en">Projects<span class="sep" aria-hidden="true"> · </span></span>
+            <span lang="ru" class="t-ru">Проекты</span>
+        </h1>
+
+        <div class="card">
+            <div class="kp-head">
+                <img class="kp-logo" src="/kpuzzle-logo.svg" alt="">
+                <div>
+                    <h2>KPuzzle</h2>
+                    <div class="pills">
+                        <span class="pill">Web</span>
+                        <span class="pill">Android</span>
+                        <span class="pill">iOS</span>
+                        <span class="pill">Desktop</span>
+                    </div>
+                </div>
+            </div>
+            <p class="desc">
+                <span lang="en" class="t-en">Sixteen logic puzzles — sudoku and nonograms up to star
+                battle — with a generator, a solver and progressive hints. Fully
+                offline: every puzzle is generated and solved on your device.</span>
+                <span lang="ru" class="t-ru">Шестнадцать логических головоломок — от судоку и нонограмм
+                до звёздных битв: генератор, решатель и постепенные подсказки.
+                Полностью оффлайн — пазлы собираются и решаются на устройстве.</span>
+            </p>
+            <div class="actions">
+                <a class="button primary" href="https://kanphis.github.io/KPuzzle-web/">
+                    <span lang="en" class="t-en">Play in the browser</span>
+                    <span lang="ru" class="t-ru">Играть в браузере</span>
+                </a>
+                <a class="button ghost" href="https://github.com/kanphis/KPuzzle">GitHub</a>
+                <a class="quiet" href="https://kanphis.github.io/KPuzzle-web/privacy.html">
+                    <span lang="en" class="t-en">Privacy policy</span>
+                    <span lang="ru" class="t-ru">Политика конфиденциальности</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="card soon">
+            <span lang="en" class="t-en">Another project is on the way.</span>
+            <span lang="ru" class="t-ru">Следующий проект уже в пути.</span>
+        </div>
+
+        <p class="foot">© 2026 kanphis · <a href="/">← <span lang="en" class="t-en">Home</span><span lang="ru" class="t-ru">Главная</span></a></p>
+    </main>
+</div>
+<script type="application/javascript">
+    /*
+     * Same locale mechanics as webApp privacy.html: ?lang= or the hash win
+     * over the browser locale; the choice is client-side only — no storage,
+     * no redirects — and without JavaScript both languages remain visible.
+     */
+    (() => {
+        const root = document.documentElement;
+        const buttons = document.querySelectorAll(".lang-switch button");
+        const titles = {
+            en: "Projects — kanphis",
+            ru: "Проекты — kanphis",
+        };
+
+        const apply = (lang) => {
+            root.setAttribute("data-lang", lang);
+            root.lang = lang;
+            document.title = titles[lang];
+            buttons.forEach((button) => {
+                button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+            });
+        };
+
+        const fromUrl = () => {
+            const query = new URLSearchParams(window.location.search).get("lang");
+            const hash = window.location.hash.replace("#", "");
+            if (query === "en" || query === "ru") return query;
+            if (hash === "en" || hash === "ru") return hash;
+            return null;
+        };
+
+        const requested = fromUrl();
+        if (requested) {
+            apply(requested);
+        } else {
+            const preferred = navigator.languages || [navigator.language || "en"];
+            apply(preferred.some((tag) => tag.toLowerCase().startsWith("ru")) ? "ru" : "en");
+        }
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                apply(button.dataset.lang);
+                try {
+                    history.replaceState(null, "", "#" + button.dataset.lang);
+                } catch {
+                    // sandboxed contexts may forbid URL changes
+                }
+            });
+        });
+    })();
+</script>
+</body>
+</html>

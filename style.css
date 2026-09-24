@@ -1,0 +1,235 @@
+/*
+ * kanphis.github.io — shared styles.
+ *
+ * The whole palette is lifted from the owner's penguin avatar (penguin.svg):
+ * body gradient #000084 → #000064, beak gradient #FFD100 → #FF5E4A, white
+ * belly. The avatar itself returns as a giant translucent watermark
+ * (penguin-ghost.svg); the beak gradient is the only accent the UI uses.
+ *
+ * Language switching mirrors webApp privacy.html: the script sets
+ * html[data-lang] and these rules collapse the page to one language —
+ * titles carry both in nested spans (.t-en/.t-ru), bodies are one
+ * <section> per language. Without JavaScript everything stays visible.
+ */
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/inter_variable.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    color-scheme: dark;
+    --bg-top: #000084;
+    --bg-bottom: #000064;
+    --text: #FFFFFF;
+    --muted: rgba(255, 255, 255, 0.66);
+    --faint: rgba(255, 255, 255, 0.4);
+    --line: rgba(255, 255, 255, 0.16);
+    --surface: rgba(255, 255, 255, 0.055);
+    --sun: #FFD100;
+    --coral: #FF5E4A;
+    --accent: linear-gradient(105deg, var(--sun), var(--coral));
+    --on-accent: #00054E;
+}
+
+* { box-sizing: border-box; }
+
+html[data-lang="en"] section[lang="ru"],
+html[data-lang="ru"] section[lang="en"],
+html[data-lang="en"] .t-ru,
+html[data-lang="ru"] .t-en,
+html[data-lang] .sep { display: none; }
+
+body {
+    margin: 0;
+    min-height: 100svh;
+    background:
+        radial-gradient(110% 70% at 50% 0%, rgba(255, 255, 255, 0.07), transparent 60%),
+        linear-gradient(178deg, var(--bg-top) 4%, var(--bg-bottom) 96%);
+    background-attachment: fixed;
+    color: var(--text);
+    font: 17px/1.65 "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-optical-sizing: auto;
+    font-feature-settings: "tnum" 1, "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--sun); color: var(--on-accent); }
+
+:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; border-radius: 4px; }
+
+a { color: var(--text); }
+
+/* --- the watermark -------------------------------------------------- */
+
+.watermark {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.watermark img {
+    width: 96vmin;
+    height: 96vmin;
+    animation: drift 16s ease-in-out infinite alternate;
+}
+
+/* On content pages the sign rides higher so the beak clears the text;
+   `translate` composes with the drift animation's transform */
+.watermark.raised img { translate: 0 -13vh; }
+
+/* Narrow screens: content fills the viewport, so soften the mark and nudge
+   it clear of the card headings */
+@media (max-width: 700px) {
+    .watermark img { opacity: 0.8; }
+    .watermark.raised img { translate: 0 -20vh; }
+}
+
+@keyframes drift {
+    from { transform: translateY(-1.4%) rotate(-1deg); }
+    to   { transform: translateY(1.4%) rotate(1deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .watermark img { animation: none; }
+}
+
+/* --- frame, header --------------------------------------------------- */
+
+.page {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+}
+
+.frame {
+    width: 100%;
+    max-width: 64rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.5rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+}
+
+.brand img { width: 28px; height: 28px; border-radius: 20%; display: block; }
+
+.top nav { display: flex; align-items: center; gap: 1.1rem; }
+
+.top nav > a:not(.lang-switch *) {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.top nav > a:not(.lang-switch *):hover { color: var(--text); }
+
+.lang-switch {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.lang-switch button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.8rem;
+    cursor: pointer;
+}
+
+.lang-switch button[aria-pressed="true"] {
+    background: var(--text);
+    color: var(--on-accent);
+    font-weight: 600;
+}
+
+.lang-switch button:focus-visible { outline-offset: -3px; }
+
+/* --- buttons ---------------------------------------------------------- */
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.35rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.button.primary {
+    background: var(--accent);
+    color: var(--on-accent);
+    box-shadow: 0 8px 24px rgba(255, 94, 74, 0.22);
+}
+
+.button.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(255, 94, 74, 0.32);
+}
+
+.button.ghost {
+    border-color: var(--line);
+    background: var(--surface);
+    color: var(--text);
+}
+
+.button.ghost:hover { background: rgba(255, 255, 255, 0.1); }
+
+.quiet {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.quiet:hover { color: var(--text); text-decoration: underline; }
+
+/* --- footer ------------------------------------------------------------ */
+
+.foot {
+    margin-top: 4rem;
+    padding-bottom: 1.75rem;
+    color: var(--faint);
+    font-size: 0.85rem;
+}
+
+.foot a { color: var(--muted); text-decoration: none; }
+.foot a:hover { color: var(--text); text-decoration: underline; }

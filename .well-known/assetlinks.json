@@ -1,0 +1,25 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "ru.kanphis.puzzle",
+      "sha256_cert_fingerprints": [
+        "0c:1e:cb:65:e4:c3:54:db:d4:49:bf:41:29:5c:51:c9:27:67:69:ff:0f:e3:98:8f:70:ac:94:65:51:db:51:68",
+        "8a:f5:72:5b:ae:39:de:5e:e9:b6:98:bf:21:2f:30:06:a5:f4:7c:eb:90:a0:0d:4d:d5:1c:85:99:6c:7f:0e:00",
+        "dd:ed:66:34:b6:6f:92:54:69:d7:42:b5:3d:8f:76:e9:26:98:d7:f1:9a:54:6c:a7:69:d5:fb:b2:d1:55:19:c7",
+        "c6:1a:af:83:c2:f4:2e:b8:e0:0c:3e:3c:5b:1b:29:f2:51:f9:c1:69:b6:39:58:b5:63:0a:13:cc:9f:e8:dc:05"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "ru.kanphis.puzzle.debug",
+      "sha256_cert_fingerprints": [
+        "0f:f0:40:77:09:c2:51:19:4b:f5:4e:3b:dc:2d:fb:e9:94:08:7a:af:43:2f:5e:b4:ff:65:1e:85:02:48:34:11"
+      ]
+    }
+  }
+]
