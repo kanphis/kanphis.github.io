@@ -5,10 +5,10 @@
       "namespace": "android_app",
       "package_name": "ru.kanphis.puzzle",
       "sha256_cert_fingerprints": [
-        "0c:1e:cb:65:e4:c3:54:db:d4:49:bf:41:29:5c:51:c9:27:67:69:ff:0f:e3:98:8f:70:ac:94:65:51:db:51:68",
-        "8a:f5:72:5b:ae:39:de:5e:e9:b6:98:bf:21:2f:30:06:a5:f4:7c:eb:90:a0:0d:4d:d5:1c:85:99:6c:7f:0e:00",
-        "dd:ed:66:34:b6:6f:92:54:69:d7:42:b5:3d:8f:76:e9:26:98:d7:f1:9a:54:6c:a7:69:d5:fb:b2:d1:55:19:c7",
-        "c6:1a:af:83:c2:f4:2e:b8:e0:0c:3e:3c:5b:1b:29:f2:51:f9:c1:69:b6:39:58:b5:63:0a:13:cc:9f:e8:dc:05"
+        "0C:1E:CB:65:E4:C3:54:DB:D4:49:BF:41:29:5C:51:C9:27:67:69:FF:0F:E3:98:8F:70:AC:94:65:51:DB:51:68",
+        "8A:F5:72:5B:AE:39:DE:5E:E9:B6:98:BF:21:2F:30:06:A5:F4:7C:EB:90:A0:0D:4D:D5:1C:85:99:6C:7F:0E:00",
+        "DD:ED:66:34:B6:6F:92:54:69:D7:42:B5:3D:8F:76:E9:26:98:D7:F1:9A:54:6C:A7:69:D5:FB:B2:D1:55:19:C7",
+        "C6:1A:AF:83:C2:F4:2E:B8:E0:0C:3E:3C:5B:1B:29:F2:51:F9:C1:69:B6:39:58:B5:63:0A:13:CC:9F:E8:DC:05"
       ]
     }
   },
@@ -18,7 +18,7 @@
       "namespace": "android_app",
       "package_name": "ru.kanphis.puzzle.debug",
       "sha256_cert_fingerprints": [
-        "0f:f0:40:77:09:c2:51:19:4b:f5:4e:3b:dc:2d:fb:e9:94:08:7a:af:43:2f:5e:b4:ff:65:1e:85:02:48:34:11"
+        "0F:F0:40:77:09:C2:51:19:4B:F5:4E:3B:DC:2D:FB:E9:94:08:7A:AF:43:2F:5E:B4:FF:65:1E:85:02:48:34:11"
       ]
     }
   }
