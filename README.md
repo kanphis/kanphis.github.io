@@ -2,8 +2,9 @@
 
 The GitHub Pages user site. Three jobs:
 
-1. **Personal landing** (`index.html`) — the penguin's face as a big white
-   disc anchored to the bottom-right corner, beak-gradient accents. No top
+1. **Personal landing** (`index.html`) — the penguin's face — eyes, beak
+   and the white belly — anchored to the bottom-right corner, beak-gradient
+   accents. No top
    bar: just the wordmark, the tagline, a link to `/projects/` and a
    floating RU + EN switch. The choice is kept in `localStorage`, so it
    survives navigation between the pages (`?lang=` / `#lang` still override
@@ -31,7 +32,7 @@ projects/index.html           projects page
 lang.js                       RU/EN switch: ?lang= or # > localStorage > browser locale
 style.css                     shared styles (palette from the avatar)
 favicon.svg                   the avatar clipped to a circle (favicon)
-penguin-face.svg              the avatar's face: white disc + beak (watermark)
+penguin-face.svg              the avatar's face: eyes, beak, white belly (watermark)
 kpuzzle-icon.svg              the app icon: light launcher colors on a rounded tile
 badge-google-play-en/ru.svg   official Google Play badges
 badge-rustore.svg             official RuStore dark button
@@ -46,10 +47,11 @@ fonts/OFL.txt                 the font's license
   `#FFD100 → #FF5E4A` — the only accent, used for the primary buttons,
   the 404 numerals, selection and focus rings. Everything else is white
   at varying opacity.
-- `penguin-face.svg` is the avatar reduced to the face: the white disc —
-  the avatar's belly showing through the body's circular cut-out — with the
-  beak on top. The avatar's squares are left out so the mark never reads as
-  an inscribed square, while the belly keeps its white. On scrollable pages
+- `penguin-face.svg` is the avatar reduced to the face: the white belly
+  ellipse with the beak and the two eyes on top. The navy body is left out
+  so the mark floats straight on the page's own navy — the eyes keep their
+  pupils readable against the white of the eye, not the ground. On
+  scrollable pages
   the mark anchors to the document (`.watermark.scrolls`), so text never
   crosses it. Do not blend the watermark with `mix-blend-mode`: screen over
   the blue backdrop cannot lower the blue channel, so warm hues turn to
