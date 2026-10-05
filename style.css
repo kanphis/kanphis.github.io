@@ -4,8 +4,8 @@
  * The whole palette is lifted from the owner's penguin avatar (penguin.svg):
  * body gradient #000084 → #000064, beak gradient #FFD100 → #FF5E4A, white
  * belly. The avatar's face — the eyes, the beak and the white belly —
- * returns as the watermark (penguin-face.svg); the beak gradient is the only
- * accent the UI uses.
+ * returns as the watermark (penguin-face-sparkle.svg, with -smile / -empty
+ * variants per page); the beak gradient is the only accent the UI uses.
  *
  * Language switching mirrors webApp privacy.html: the script sets
  * html[data-lang] and these rules collapse the page to one language —
